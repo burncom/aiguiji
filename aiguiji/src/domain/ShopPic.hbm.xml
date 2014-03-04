@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-2-25 23:31:25 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="domain.ShopPic" table="t_shop_pic">
+        <id name="iPicId" type="int" access="field">
+            <column name="pic_id" />
+            <generator class="identity" />
+        </id>
+        <property name="sPath" type="java.lang.String" access="field">
+            <column name="f_path" />
+        </property>
+        <many-to-one name="shop" class="domain.Shop" not-null="true" lazy="false">
+            <column name="shop_id" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

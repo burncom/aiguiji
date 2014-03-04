@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-1-6 16:43:30 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="domain.MsgMsgRelationship" table="msg_msg_relationship">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <property name="reference_id" type="int">
+            <column name="REFERENCE_ID" />
+        </property>
+        <property name="reference_msg_id" type="int">
+            <column name="reference_msg_id" />
+        </property>
+        <property name="referenced_id" type="int">
+            <column name="REFERENCED_ID" />
+        </property>
+        <property name="referenced_msg_id" type="int">
+            <column name="REFERENCED_MSG_ID" />
+        </property>
+        <property name="type" type="int">
+            <column name="TYPE" />
+        </property>
+        <property name="realtime" type="int">
+            <column name="realtime" />
+        </property>
+        <property name="datetime" type="int">
+            <column name="datetime" />
+        </property>
+    </class>
+</hibernate-mapping>

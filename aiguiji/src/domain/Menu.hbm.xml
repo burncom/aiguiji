@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-2-25 23:31:25 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="domain.Menu" table="t_menu">
+        <id name="iMenuId" type="int" access="field">
+            <column name="menu_id" />
+            <generator class="identity" />
+        </id>
+        <property name="sClassName" type="java.lang.String" access="field">
+            <column name="f_class_name" />
+        </property>
+        <property name="sDishName" type="java.lang.String" access="field">
+            <column name="f_dish_name" />
+        </property>
+        <property name="iPrice" type="int" access="field">
+            <column name="f_price" />
+        </property>
+        <set name="order" table="t_order" inverse="true" cascade="all">
+            <key>
+                <column name="menu_id" />
+            </key>
+            <one-to-many class="domain.Order" />
+        </set>
+        <set name="orderEvaluate" table="t_order_evaluate" inverse="true" cascade="all">
+            <key>
+                <column name="menu_id" />
+            </key>
+            <one-to-many class="domain.OrderEvaluate" />
+        </set>
+        <many-to-one name="shop" class="domain.Shop" not-null="true" lazy="false">
+            <column name="shop_id" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

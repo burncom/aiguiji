@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-1-6 16:43:30 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="domain.LogInfo" table="log_info">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <property name="operate" type="int">
+            <column name="OPERATE" />
+        </property>
+        <property name="mood" type="int">
+            <column name="MOOD" />
+        </property>
+        <property name="content" type="java.lang.String">
+            <column name="content" />
+        </property>
+        <property name="coordinate" type="java.lang.String">
+            <column name="COORDINATE" />
+        </property>
+        <property name="province" type="java.lang.String">
+            <column name="PROVINCE" />
+        </property>
+        <property name="city" type="java.lang.String">
+            <column name="CITY" />
+        </property>
+        <property name="district" type="java.lang.String">
+            <column name="DISTRICT" />
+        </property>
+        <property name="other" type="java.lang.String">
+            <column name="OTHER" />
+        </property>
+        <property name="oprealtime" type="int">
+            <column name="oprealtime" />
+        </property>
+        <property name="opdatetime" type="int">
+            <column name="opdatetime" />
+        </property>
+        <many-to-one name="userInfo" class="domain.UserInfo" not-null="true" lazy="false">
+            <column name="user_id" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

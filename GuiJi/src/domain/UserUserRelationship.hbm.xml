@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-1-6 16:43:30 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="domain.UserUserRelationship" table="user_user_relationship">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <property name="follower_id" type="int">
+            <column name="FOLLOWER_ID" />
+        </property>
+        <property name="type" type="int">
+            <column name="TYPE" />
+        </property>
+        <many-to-one name="userInfo" class="domain.UserInfo" not-null="true" lazy="false">
+            <column name="user_id" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

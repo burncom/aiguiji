@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-1-6 16:43:30 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="domain.MessageInfo" table="message_info">
+        <id name="msg_id" type="int">
+            <column name="MSG_ID" />
+            <generator class="identity" />
+        </id>
+        <property name="msg_content" type="java.lang.String">
+            <column name="MSG_CONTENT" />
+        </property>
+        <property name="type" type="int">
+            <column name="TYPE" />
+        </property>
+        <property name="mood" type="int">
+            <column name="mood" />
+        </property>
+        <property name="recommend_amount" type="int">
+            <column name="RECOMMEND_AMOUNT" />
+        </property>
+        <property name="recommend_value" type="int">
+            <column name="RECOMMEND_VALUE" />
+        </property>
+        <property name="commented_amount" type="int">
+            <column name="COMMENTED_AMOUNT" />
+        </property>
+        <property name="comment_amount" type="int">
+            <column name="COMMENT_AMOUNT" />
+        </property>
+        <property name="transmited_amount" type="int">
+            <column name="transmited_amount" />
+        </property>
+        <property name="transmit_amount" type="int">
+            <column name="transmit_amount" />
+        </property>
+        <property name="join_amount" type="int">
+            <column name="JOIN_AMOUNT" />
+        </property>
+        <property name="join_value" type="int">
+            <column name="JOIN_VALUE" />
+        </property>
+        <property name="pictures_amount" type="int">
+            <column name="pictures_amount" />
+        </property>
+        <property name="realtime" type="int">
+            <column name="realtime" />
+        </property>
+        <property name="datetime" type="int">
+            <column name="datetime" />
+        </property>
+        <property name="start_realtime" type="int">
+            <column name="start_realtime" />
+        </property>
+        <property name="start_datetime" type="int">
+            <column name="start_datetime" />
+        </property>
+        <property name="end_realtime" type="int">
+            <column name="end_realtime" />
+        </property>
+        <property name="end_datetime" type="int">
+            <column name="end_datetime" />
+        </property>
+        <property name="leader_name" type="java.lang.String">
+            <column name="LEADER_NAME" />
+        </property>
+        <property name="picture" type="java.lang.String">
+            <column name="PICTURE" />
+        </property>
+        <property name="coordinate" type="java.lang.String">
+            <column name="COORDINATE" />
+        </property>
+        <property name="province" type="java.lang.String">
+            <column name="PROVINCE" />
+        </property>
+        <property name="city" type="java.lang.String">
+            <column name="CITY" />
+        </property>
+        <property name="district" type="java.lang.String">
+            <column name="DISTRICT" />
+        </property>
+        <property name="other" type="java.lang.String">
+            <column name="OTHER" />
+        </property>
+        <property name="actcoordinate" type="java.lang.String">
+            <column name="actcoordinate" />
+        </property>
+        <property name="actprovince" type="java.lang.String">
+            <column name="actprovince" />
+        </property>
+        <property name="actcity" type="java.lang.String">
+            <column name="actcity" />
+        </property>
+        <property name="actdistrict" type="java.lang.String">
+            <column name="actdistrict" />
+        </property>
+        <property name="actother" type="java.lang.String">
+            <column name="actother" />
+        </property>
+        <property name="category" type="int">
+            <column name="CATEGORY" />
+        </property>
+        <many-to-one name="userInfo" class="domain.UserInfo" not-null="true" lazy="false">
+            <column name="user_id" />
+        </many-to-one>
+        <set name="userMsgIndex" table="user_msg_index" inverse="true" cascade="all">
+            <key>
+                <column name="MSG_ID" />
+            </key>
+            <one-to-many class="domain.UserMsgIndex" />
+        </set>
+    </class>
+</hibernate-mapping>

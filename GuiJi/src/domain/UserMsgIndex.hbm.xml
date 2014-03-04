@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-1-6 16:43:30 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="domain.UserMsgIndex" table="user_msg_index">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <property name="author_id" type="int">
+            <column name="AUTHOR_ID" />
+        </property>
+        <property name="realtime" type="int">
+        	<column name="realtime" />
+        </property>
+        <property name="datetime" type="int">
+        	<column name="datetime" />
+        </property>
+        <many-to-one name="userInfo" class="domain.UserInfo" not-null="true" lazy="false">
+            <column name="user_id" />
+        </many-to-one>
+        <many-to-one name="messageInfo" class="domain.MessageInfo" not-null="true" lazy="false">
+            <column name="msg_id" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

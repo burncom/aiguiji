@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-2-25 23:31:25 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="domain.Order" table="t_order">
+        <id name="iOrderId" type="int" access="field">
+            <column name="order_id" />
+            <generator class="identity" />
+        </id>
+        <property name="iPrice" type="int" access="field">
+            <column name="IPRICE" />
+        </property>
+        <property name="sPrice" type="java.lang.String" access="field">
+            <column name="f_price" />
+        </property>
+        <property name="sDate" type="java.lang.String" access="field">
+            <column name="f_date" />
+        </property>
+        <property name="sTime" type="java.lang.String" access="field">
+            <column name="f_time" />
+        </property>
+        <many-to-one name="user" class="domain.User" fetch="join">
+            <column name="user_id" />
+        </many-to-one>
+        <many-to-one name="menu" class="domain.Menu" not-null="true" lazy="false">
+            <column name="menu_id" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

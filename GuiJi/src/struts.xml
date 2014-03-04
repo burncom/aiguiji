@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+	<!-- 系统常量定义，定义上传文件临时存放路径 -->
+	<constant name="struts.multipart.maxSize" value="10485760"/>
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.multipart.saveDir" value="/temp"/>
+	<package name="default" extends="struts-default">
+	
+	<!-- 定义全局Result映射 -->
+		<global-results>
+			<!-- 定义login逻辑视图对应的视图资源 -->
+			<result name="login">/WEB-INF/content/login.jsp</result>
+			<result	name="register">/WEB-INF/content/register.jsp</result>
+		</global-results>
+		
+		<!-- 登录请求 -->
+		<action name="loginAction" class="action.LoginAction">
+			<result type="chain">mood</result>
+			<result name="input">/WEB-INF/content/login.jsp</result>
+			<result name="error">/WEB-INF/content/login.jsp</result>
+		</action>		
+		<!-- 注册请求 -->
+		<action name="registerAction" class="action.RegisterAction">
+			<result name="input">/WEB-INF/content/register.jsp</result>
+			<result name="success">/WEB-INF/content/editProfile.jsp</result>
+			<result name="error" >/WEB-INF/content/register.jsp</result>
+			<result name="toLogin">/WEB-INF/content/login.jsp</result>
+		</action>
+		<!-- 设置个人信息 -->
+		<action name="editProfileAction" class="action.EditProfileAction">
+			<param name="savePath">/images/user</param>
+			<result name="success">/WEB-INF/content/editInterest.jsp</result>
+			<result name="error">/WEB-INF/content/register.jsp</result>
+		</action>
+		<!--设置感兴趣的地点 -->
+		<action	name="editInterestAction" class="action.EditInterestAction">
+			<result type="chain">mood</result>
+		</action>
+		
+		<!-- 发布信息 -->
+		<action name="publishMsgOrAct">
+			<result>/WEB-INF/content/center/publishMsgOrAct.jsp</result>
+		</action>
+		<action	name="publish" class="action.PublishAction">
+			<param name="picPath">/images/user</param>
+			<result type="chain">timePlace</result>
+			<result name="input">/WEB-INF/content/home.jsp</result>
+			<result name="error">/WEB-INF/content/home.jsp</result>
+		</action>
+		
+		<action name="realWeather" class="action.RealWeatherAction">
+			<result name="success">/WEB-INF/content/center/weather/realWeather.jsp</result>
+		</action>
+		<action name="publishWeatherAction" class="action.PublishWeatherAction">
+			<result type="chain">realWeather</result>
+			<result name="input">/WEB-INF/content/center/weather/publishWeather.jsp</result>
+		</action>
+		<!--处理对天气点击的赞成或者不赞成的按钮 -->
+		<action name="approve" class="action.ApproveAction">
+			<result type="chain">realWeather</result>
+		</action>
+		<!-- 实时  新鲜地点 -->
+		<action name="timePlace" class="action.TimePlaceAction">
+			<result name="success">/WEB-INF/content/center/place/timePlace.jsp</result>
+		</action>
+		
+		<!-- 热度  新鲜地点 -->
+		<action name="hotPlace" class="action.HotPlaceAction">
+			<result name="success">/WEB-INF/content/center/place/hotPlace.jsp</result>
+		</action>
+		
+		<!-- 推荐  新鲜地点 -->
+		<action name="recommendPlace" class="action.RecommendPlaceAction">
+			<result name="success">/WEB-INF/content/center/place/recommendPlace.jsp</result>
+		</action>
+		
+		<action name="pictureset" class="action.button.PicturesetAction">
+			<result name="success">/WEB-INF/content/center/button/pictureset.jsp</result>
+		</action>
+		
+		<action name="deleteMsgOrAct" class="action.button.DeleteMsgOrActAction">
+			<result type="chain">timePlace</result>
+		</action>
+		
+		<!-- 处理推荐按钮 -->
+		<action name="recommend" class="action.button.RecommendAction">
+			<result name="recommendV">/WEB-INF/content/center/button/recommendV.jsp</result>
+			<result type="chain">timePlace</result>
+		</action>
+		<!-- 处理 想参加 按钮 -->	
+		<action name="join" class="action.button.JoinAction">
+			<result name="joinV">/WEB-INF/content/center/button/joinV.jsp</result>
+			<result type="chain">timePlace</result>
+		</action>
+		<!-- 处理 转发 按钮 -->
+		<action name="transmit" class="action.button.TransmitAction">
+			<result name="doTransmit">/WEB-INF/content/center/button/transmit.jsp</result>
+			<result type="chain">timePlace</result>
+		</action>
+		
+		<!-- 处理 评论  按钮 -->
+		<action name="comment" class="action.button.CommentAction">
+			<param name="savePath">/images/user</param>
+			<result name="doComment">/WEB-INF/content/center/button/comment.jsp</result>
+			<result type="chain">timePlace</result>
+		</action>
+		<!-- 删除  回复 -->
+		<action name="deleteReply" class="action.button.DeleteReplyAction">
+			<result type="chain">timePlace</result>
+		</action>
+		
+		<!-- 回复 -->
+		<action name="reply" class="action.button.ReplyAction">
+			<param name="savePath">/images/user</param>
+			<result name="doReply">/WEB-INF/content/center/button/reply.jsp</result>
+			<result type="chain">timePlace</result>
+		</action>
+		
+		<!-- 回复 心情信息 -->
+		<action name="replyMood" class="action.mood.ReplyMoodAction">
+			<param name="savePath">/images/user</param>
+			<result name="doReplyMood">/WEB-INF/content/center/moodPage/replyMood.jsp</result>
+			<result type="chain">mood</result>
+		</action>
+		
+		<!-- 将精彩的地点 -->
+		<action name="willActivity" class="action.WillActivityAction">
+			<result name="success">/WEB-INF/content/center/activity/willActivity.jsp</result>
+		</action>
+		
+		<!-- 我的主页 -->
+		<action name="myHome" class="action.MyHomeAction">
+			<result name="success">/WEB-INF/content/center/place/myHome.jsp</result>
+		</action>
+		<!-- 心情动态 -->
+		<action name="moodDynamic" class="action.mood.MoodDynamicAction">
+			<result name="success">/WEB-INF/content/center/moodPage/moodDynamic.jsp</result>
+		</action>
+		
+		<!-- 排行榜 -->
+		<action name="topList" class="action.top.TopListAction">
+			<result name="success">/WEB-INF/content/center/topUser/topList.jsp</result>
+		</action>
+		
+		<!--处理分类  用户排行榜 -->
+		<action name="classUserList" class="action.top.ClassUserListAction">
+			<result name="success">/WEB-INF/content/center/topUser/classUserList.jsp</result>
+		</action>
+		
+		<!--处理心情,加载userHeader.jsp-->
+		<action name="mood" class="action.MoodAction">
+			<result name="success">/WEB-INF/content/home.jsp</result>
+		</action>
+		
+		<!--发布心情-->
+		<action name="publishMood" class="action.mood.PublishMoodAction">
+			<param name="savePath">/images/user</param>
+			<result name="doPublishMood">/WEB-INF/content/center/moodPage/publishMood.jsp</result>
+			<result type="chain">mood</result>
+		</action>
+		
+		<!--删除心情-->
+		<action name="deleteMood" class="action.mood.DeleteMoodAction">
+			<result type="chain">mood</result>
+		</action>
+		<!-- 处理 评论  心情 按钮 -->
+		<action name="commentMood" class="action.mood.CommentMoodAction">
+			<param name="savePath">/images/user</param>
+			<result name="doCommentMood">/WEB-INF/content/center/moodPage/commentMood.jsp</result>
+			<result type="chain">mood</result>
+		</action>
+		
+		<!--处理四种类型情况下的关注情况按钮-->
+		<action name="statusUUR" class="action.button.StatusUURAction">
+			<result type="chain">mood</result>
+		</action>
+		<!--关注者-->
+		<action name="followers" class="action.FollowersAction">
+			<result name="success">/WEB-INF/content/center/followerPage/followersList.jsp</result>
+		</action>
+		<!--粉丝-->
+		<action name="fans" class="action.FansAction">
+			<result name="success">/WEB-INF/content/center/fansPage/fansList.jsp</result>
+		</action>
+		<!--查找用户-->
+		<action name="findUsers" class="action.FindUsersAction">
+			<result name="findUser">/WEB-INF/content/center/findPage/findUserList.jsp</result>
+			<result name="success">/WEB-INF/content/center/findPage/findUserList.jsp</result>
+		</action>
+		<!-- 消息 -->
+		<action name="info" class="action.info.InfoAction">
+			<result name="success">/WEB-INF/content/center/infoPage/info.jsp</result>
+		</action>
+		<!-- 相册 -->
+		<action name="photos" class="action.PhotosAction">
+			<result name="success">/WEB-INF/content/center/place/myphotos.jsp</result>
+		</action>
+		<!-- 上传图片 -->
+		<action name="upPicture">
+			<result>/WEB-INF/content/center/place/upPicture.jsp</result>
+		</action>
+		<!-- 删除图片 按钮 -->
+		<action name="deletePhoto" class="action.button.DeletePhotoAction">
+			<result type="chain">photos</result>
+		</action>
+		<!-- 上传图片 -->
+		<action name="uploadPicture" class="action.button.UploadPictureAction">
+			<param name="savePath">/images/user</param>
+			<result type="chain">photos</result>
+		</action>
+		<!-- 放大图片的界面 -->
+		<action name="toBigPicture" class="action.button.ToBigPictureAction">
+			<result name="success">/WEB-INF/content/center/bigPicture.jsp</result>
+		</action>
+		
+		<!-- 设置 -->
+		<action name="setup">
+			<result>/WEB-INF/content/center/set.jsp</result>
+		</action>
+		<!-- 设置 头像-->
+		<action name="setAvator">
+			<result>/WEB-INF/content/center/setSys/avator.jsp</result>
+		</action>
+		<action name="setupAvator" class="action.setsys.SetAvatorAction">
+			<param name="savePath">/images/user</param>
+			<result name="setUserAvatorYes">/WEB-INF/content/center/set.jsp</result>
+			<result name="success">/WEB-INF/content/center/setSys/avator.jsp</result>
+		</action>
+		<!-- 设置感兴趣地点 -->
+		<action name="setInterest">
+			<result>/WEB-INF/content/center/setSys/interest.jsp</result>
+		</action>
+		<action name="setupInterest" class="action.setsys.SetupInterestAction">
+			<result name="setupInterestYes">/WEB-INF/content/center/set.jsp</result>
+			<result name="success">/WEB-INF/content/center/setSys/interest.jsp</result>
+		</action>
+		<!-- 设置 注册邮箱-->
+		<action name="setEmail">
+			<result>/WEB-INF/content/center/setSys/email.jsp</result>
+		</action>
+		<action name="setupEmail" class="action.setsys.SetEmailAction">
+			<result name="setUserEmailYes">/WEB-INF/content/center/set.jsp</result>
+			<result name="success">/WEB-INF/content/center/setSys/email.jsp</result>
+			<result name="input">/WEB-INF/content/center/setSys/email.jsp</result>
+		</action>
+		<!-- 设置 个人信息-->
+		<action name="setOwnInfo">
+			<result>/WEB-INF/content/center/setSys/ownInfo.jsp</result>
+		</action>
+		<action name="setupOwnInfo" class="action.setsys.SetOwnInfoAction">
+			<result name="setupOwnInfoYes">/WEB-INF/content/center/set.jsp</result>
+			<result name="success">/WEB-INF/content/center/setSys/ownInfo.jsp</result>
+		</action>
+		<!-- 设置反馈意见 -->
+		<action name="setFeedback">
+			<result>/WEB-INF/content/center/setSys/feedback.jsp</result>
+		</action>
+		<action name="setupFeedback" class="action.setsys.SetFeedbackAction">
+			<result name="setupFeedBackYes">/WEB-INF/content/center/set.jsp</result>
+			<result name="success">/WEB-INF/content/center/setSys/feedback.jsp</result>
+		</action>
+		<!-- 设置 退出-->
+		<action name="logout" class="action.LogoutAction">
+			<result name="success">/WEB-INF/content/login.jsp</result>
+		</action>
+		
+		<!-- 用户个人主页 -->
+		<action name="user" class="action.UserAction">
+			<result name="success">/WEB-INF/content/center/personal/user.jsp</result>
+		</action>
+		<!-- 个人用户心情 -->
+		<action name="userMood" class="action.UserMoodAction">
+			<result name="success">/WEB-INF/content/center/personal/userMood.jsp</result>
+		</action>
+		
+		
+		<action name="*">
+			<result>/WEB-INF/content/{1}.jsp</result>
+		</action>
+		<action name="publishWeather">
+			<result>/WEB-INF/content/center/weather/publishWeather.jsp</result>
+		</action>
+	</package>
+</struts>

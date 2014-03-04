@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-2-25 23:31:25 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="domain.ShopEvaluate" table="t_shop_evaluate">
+        <id name="iEvaluateId" type="int" access="field">
+            <column name="evaluate_id" />
+            <generator class="identity" />
+        </id>
+        <property name="iService" type="int" access="field">
+            <column name="f_service" />
+        </property>
+        <property name="iSpeed" type="int" access="field">
+            <column name="f_speed" />
+        </property>
+        <property name="iTaste" type="int" access="field">
+            <column name="f_taste" />
+        </property>
+        <many-to-one name="shop" class="domain.Shop" not-null="true" lazy="false">
+            <column name="shop_id" />
+        </many-to-one>
+        <many-to-one name="user" class="domain.User" not-null="true" lazy="false">
+            <column name="user_id" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

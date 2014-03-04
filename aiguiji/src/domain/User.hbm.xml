@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-2-25 23:31:25 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="domain.User" table="t_usr">
+        <id name="iUserId" type="int" access="field">
+            <column name="user_id" />
+            <generator class="identity" />
+        </id>
+        <property name="sAccount" type="java.lang.String" access="field">
+            <column name="f_account" />
+        </property>
+        <property name="sPassWord" type="java.lang.String" access="field">
+            <column name="f_password" />
+        </property>
+        <property name="sPhone" type="java.lang.String" access="field">
+            <column name="f_phone" />
+        </property>
+        <property name="sLocation" type="java.lang.String" access="field">
+            <column name="f_location" />
+        </property>
+        <property name="fLatitude" type="float" access="field">
+            <column name="f_latitude" />
+        </property>
+        <property name="fLongitude" type="float" access="field">
+            <column name="f_longitude" />
+        </property>
+        <property name="sAvatar" type="java.lang.String" access="field">
+            <column name="f_avatar" />
+        </property>
+        <property name="sDate" type="java.lang.String" access="field">
+            <column name="f_date" />
+        </property>
+        <property name="sTime" type="java.lang.String" access="field">
+            <column name="f_time" />
+        </property>
+        <set name="order" table="t_order" inverse="true" cascade="all">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="domain.Order" />
+        </set>
+        <set name="orderEvaluate" table="t_order_evaluate" inverse="true" cascade="all">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="domain.OrderEvaluate" />
+        </set>
+        <set name="shopEvaluate" table="t_shop_evaluate" inverse="true" cascade="all">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="domain.ShopEvaluate" />
+        </set>
+        <many-to-one name="shop" class="domain.Shop" not-null="true" lazy="false">
+            <column name="shop_id" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

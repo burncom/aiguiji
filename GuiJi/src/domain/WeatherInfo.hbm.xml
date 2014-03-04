@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-1-6 16:43:30 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="domain.WeatherInfo" table="weather_info">
+        <id name="weather_id" type="int">
+            <column name="WEATHER_ID" />
+            <generator class="identity" />
+        </id>
+        <property name="weatherscene" type="java.lang.String">
+            <column name="weatherscene" />
+        </property>
+        <property name="temperature" type="java.lang.String">
+            <column name="temperature" />
+        </property>
+        <property name="wind" type="java.lang.String">
+            <column name="wind" />
+        </property>
+        <property name="approve_type" type="int">
+            <column name="APPROVE_TYPE" />
+        </property>
+        <property name="approve_amount" type="int">
+            <column name="APPROVE_AMOUNT" />
+        </property>
+        <property name="disapprove_amount" type="int">
+            <column name="DISAPPROVE_AMOUNT" />
+        </property>
+        <property name="realtime" type="int">
+            <column name="realtime" />
+        </property>
+        <property name="datetime" type="int">
+            <column name="datetime" />
+        </property>
+        <property name="coordinate" type="java.lang.String">
+            <column name="COORDINATE" />
+        </property>
+        <property name="province" type="java.lang.String">
+            <column name="PROVINCE" />
+        </property>
+        <property name="city" type="java.lang.String">
+            <column name="CITY" />
+        </property>
+        <property name="district" type="java.lang.String">
+            <column name="DISTRICT" />
+        </property>
+        <property name="other" type="java.lang.String">
+            <column name="OTHER" />
+        </property>
+        <many-to-one name="userInfo" class="domain.UserInfo" not-null="true" lazy="false">
+            <column name="user_id" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

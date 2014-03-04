@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-2-25 23:31:25 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="domain.Shop" table="t_shop">
+        <id name="iShopId" type="int" access="field">
+            <column name="shop_id" />
+            <generator class="identity" />
+        </id>
+        <property name="sName" type="java.lang.String" access="field">
+            <column name="f_name" />
+        </property>
+        <property name="sLocation" type="java.lang.String" access="field">
+            <column name="f_location" />
+        </property>
+        <property name="fLatitude" type="float" access="field">
+            <column name="f_latitude" />
+        </property>
+        <property name="fLongitude" type="float" access="field">
+            <column name="f_longitude" />
+        </property>
+        <property name="sPhones" type="java.lang.String" access="field">
+            <column name="f_phones" />
+        </property>
+        <property name="sWorkWeekday" type="java.lang.String" access="field">
+            <column name="f_work_weekday" />
+        </property>
+        <property name="sWorkTime" type="java.lang.String" access="field">
+            <column name="f_work_time" />
+        </property>
+        <property name="sDate" type="java.lang.String" access="field">
+            <column name="f_date" />
+        </property>
+        <property name="sTime" type="java.lang.String" access="field">
+            <column name="f_time" />
+        </property>
+        <property name="iWeight" type="int" access="field">
+            <column name="f_weight" />
+        </property>
+        <set name="user" table="t_usr" inverse="true" cascade="all">
+            <key>
+                <column name="shop_id" />
+            </key>
+            <one-to-many class="domain.User" />
+        </set>
+        <set name="menu" table="t_menu" inverse="true" cascade="all">
+            <key>
+                <column name="shop_id" />
+            </key>
+            <one-to-many class="domain.Menu" />
+        </set>
+        <set name="shopPic" table="t_shop_pic" inverse="true" cascade="all">
+            <key>
+                <column name="shop_id" />
+            </key>
+            <one-to-many class="domain.ShopPic" />
+        </set>
+        <set name="shopEvaluate" table="t_shop_evaluate" inverse="true" cascade="all">
+            <key>
+                <column name="shop_id" />
+            </key>
+            <one-to-many class="domain.ShopEvaluate" />
+        </set>
+    </class>
+</hibernate-mapping>
